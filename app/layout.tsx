@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/components/auth-provider";
 
 export const metadata: Metadata = {
   title: "Stayhere",
@@ -14,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        {children}
+        <AuthProvider>
+          {children} 
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );
