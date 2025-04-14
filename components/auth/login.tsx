@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -26,7 +26,13 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
   const { toast } = useToast();
-  const { signIn } = useAuth();
+  const { user, signIn } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      router.push('/'); // Redirect to home page if user is already logged in
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

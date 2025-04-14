@@ -10,17 +10,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { useAuth } from '@/context/auth-context';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
   const { user, signOut } = useAuth();
 
   const handleSignOut = async () => {
     try {
       await signOut();
+      setOpenLogoutDialog(false);
     } catch (error) {
       console.error('Error signing out:', error);
     }
@@ -70,41 +81,74 @@ export function Header() {
 
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="relative h-8 w-8 rounded-full cursor-pointer"
-                  >
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage
-                        src={user.photoURL || ''}
-                        alt={user.displayName || 'User'}
-                      />
-                      <AvatarFallback>
-                        {user.displayName
-                          ? user.displayName.charAt(0).toUpperCase()
-                          : 'U'}
-                      </AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="rounded">
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin" className="cursor-pointer">
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/profile" className="cursor-pointer">
-                      Profile
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleSignOut}>
-                    <span className="cursor-pointer">Log out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="flex items-center justify-center gap-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="relative h-8 w-8 rounded-full cursor-pointer"
+                    >
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage
+                          src={user.photoURL || ''}
+                          alt={user.displayName || 'User'}
+                        />
+                        <AvatarFallback>
+                          {user.displayName
+                            ? user.displayName.charAt(0).toUpperCase()
+                            : 'U'}
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="rounded">
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="cursor-pointer">
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile" className="cursor-pointer">
+                        Profile
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                {/* Logout Confirmation using Dialog */}
+                <Dialog
+                  open={openLogoutDialog}
+                  onOpenChange={setOpenLogoutDialog}
+                >
+                  <DialogTrigger asChild>
+                    <Button
+                      size="sm"
+                      className="bg-[#0937AB] hover:bg-[#0937AB]/90 cursor-pointer rounded"
+                    >
+                      Log out
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px] rounded">
+                    <DialogHeader>
+                      <DialogTitle>Confirm Logout</DialogTitle>
+                      <DialogDescription>
+                        Are you sure you want to log out?
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <Button
+                        variant="outline"
+                        onClick={() => setOpenLogoutDialog(false)}
+                        className='rounded cursor-pointer'
+                      >
+                        Cancel
+                      </Button>
+                      <Button className="rounded cursor-pointer bg-[#0937AB] hover:bg-[#0937AB]/90" onClick={handleSignOut}>
+                        Log out
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
             ) : (
               <>
                 <Link href="/auth/login">
@@ -145,7 +189,7 @@ export function Header() {
                     <DropdownMenuItem asChild>
                       <Link href="/profile">Profile</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleSignOut}>
+                    <DropdownMenuItem onClick={() => setOpenLogoutDialog(true)}>
                       Log out
                     </DropdownMenuItem>
                   </>
