@@ -16,8 +16,6 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
-import { Header } from '../shared/header';
-import Footer from '../shared/footer';
 
 const SignupPage = () => {
   const [name, setName] = useState<string>('');
@@ -85,8 +83,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <div className="min-h-[80vh] flex flex-col">
       <div className="flex-grow flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <Card className="w-full max-w-lg rounded">
           <CardHeader className="space-y-1">
@@ -180,7 +177,6 @@ const SignupPage = () => {
           </CardFooter>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 };

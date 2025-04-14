@@ -103,12 +103,12 @@ export function Header() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="rounded">
                     <DropdownMenuItem asChild>
-                      <Link href="/admin" className="cursor-pointer">
+                      <Link href="/admin/dashboard" className="cursor-pointer rounded">
                         Dashboard
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link href="/profile" className="cursor-pointer">
+                      <Link href="/profile" className="cursor-pointer rounded">
                         Profile
                       </Link>
                     </DropdownMenuItem>
