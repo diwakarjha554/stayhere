@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { Search } from './search';
 
 const Hero = () => {
   return (
@@ -14,14 +15,15 @@ const Hero = () => {
           priority
         />
       </div>
-      <div className="container relative z-20 px-4 md:px-6">
-        <div className="max-w-3xl mx-auto text-center">
+      <div className="relative z-20 px-4 md:px-6">
+        <div className=" mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Find Your Perfect Getaway
           </h1>
           <p className="text-xl text-white/90 mb-8">
             Discover and book unique accommodations around the world
           </p>
+          <Search />
         </div>
       </div>
     </section>
