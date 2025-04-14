@@ -26,7 +26,7 @@ import {
 
 const Dashboard = () => {
   const router = useRouter();
-  const { user, loading: authLoading, signOut } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [properties, setProperties] = useState<Property[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(true);
