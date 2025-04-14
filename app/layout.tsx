@@ -11,7 +11,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Home - Stayhere',
+    default: 'Home - StayHere',
     template: '%s',
   },
   description: 'Discover and book unique accommodations around the world',

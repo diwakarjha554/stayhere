@@ -58,7 +58,7 @@ export function Header() {
               href="/about"
               className="text-sm font-semibold hover:text-[#0937AB]"
             >
-              About
+              About Us
             </Link>
             <Link
               href="/contact"
@@ -104,7 +104,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <>
-                <Link href="/login">
+                <Link href="/auth/login">
                   <Button
                     variant="outline"
                     size="sm"
@@ -113,7 +113,7 @@ export function Header() {
                     Log in
                   </Button>
                 </Link>
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   <Button
                     size="sm"
                     className="bg-[#0937AB] hover:bg-[#0937AB]/90 cursor-pointer rounded"
@@ -130,7 +130,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <User className="h-5 w-5" />
+                  <User className="!h-6 !w-6" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -149,10 +149,10 @@ export function Header() {
                 ) : (
                   <>
                     <DropdownMenuItem asChild>
-                      <Link href="/login">Log in</Link>
+                      <Link href="/auth/login">Log in</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link href="/signup">Sign up</Link>
+                      <Link href="/auth/signup">Sign up</Link>
                     </DropdownMenuItem>
                   </>
                 )}
@@ -165,9 +165,9 @@ export function Header() {
               className="ml-2"
             >
               {isMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="!h-6 !w-6" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="!h-6 !w-6" />
               )}
             </Button>
           </div>
@@ -176,7 +176,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="md:hidden bg-white border-t absolute w-full top-16 left-0 shadow-lg">
           <div className="container mx-auto px-4 py-4 space-y-3">
             <Link
               href="/"
