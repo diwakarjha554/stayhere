@@ -19,18 +19,18 @@ import { useAuth } from '@/context/auth-context';
 import { Header } from '../shared/header';
 import Footer from '../shared/footer';
 
-const Signup_page = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+const SignupPage = () => {
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
   const { toast } = useToast();
   const { signUp } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!name || !email || !password || !confirmPassword) {
@@ -63,17 +63,21 @@ const Signup_page = () => {
 
       // Redirect to login page
       router.push('/auth/login');
-    } catch (error: any) {
+    } catch (error: unknown) {
+      let errorMessage = 'Failed to create account. Please try again.';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       toast({
         title: 'Error',
-        description:
-          error.message || 'Failed to create account. Please try again.',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -90,7 +94,6 @@ const Signup_page = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                {/* <Label htmlFor="name">Full Name</Label> */}
                 <Input
                   id="name"
                   type="text"
@@ -102,7 +105,6 @@ const Signup_page = () => {
                 />
               </div>
               <div className="space-y-2">
-                {/* <Label htmlFor="email">Email</Label> */}
                 <Input
                   id="email"
                   type="email"
@@ -114,7 +116,6 @@ const Signup_page = () => {
                 />
               </div>
               <div className="space-y-2">
-                {/* <Label htmlFor="password">Password</Label> */}
                 <div className="relative">
                   <Input
                     id="password"
@@ -141,7 +142,6 @@ const Signup_page = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                {/* <Label htmlFor="confirmPassword">Confirm Password</Label> */}
                 <Input
                   id="confirmPassword"
                   type={showPassword ? 'text' : 'password'}
@@ -179,4 +179,4 @@ const Signup_page = () => {
   );
 };
 
-export default Signup_page;
+export default SignupPage;
