@@ -64,15 +64,6 @@ const Dashboard = () => {
     }
   }, [user, authLoading]);
 
-  const handleLogout = async () => {
-    try {
-      await signOut();
-      router.push('/auth/login');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
-
   // Helper function to get a Date from booking date data
   const getDate = (value: Date | { toDate: () => Date }): Date =>
     value instanceof Date ? value : value.toDate();
