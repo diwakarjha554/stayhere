@@ -1,5 +1,11 @@
+import { Header } from "@/components/shared/header";
+
 const page = () => {
-  return <div>stayhere</div>;
+  return (
+    <main className="min-h-screen">
+      <Header />
+    </main>
+  );
 };
 
 export default page;

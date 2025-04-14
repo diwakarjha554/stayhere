@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/context/auth-context';
 import './globals.css';
 
 import type { Metadata } from 'next';
@@ -13,8 +14,7 @@ export const metadata: Metadata = {
     default: 'Home - Stayhere',
     template: '%s',
   },
-  description:
-    'Vacation platform',
+  description: 'Discover and book unique accommodations around the world',
   icons: {
     icon: '/logo.webp',
   },
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.className} antialiased`}>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
