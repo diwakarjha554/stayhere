@@ -91,7 +91,7 @@ const Dashboard = () => {
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-2">
-              <Link href="/admin/properties/new">
+              <Link href="/admin/create/property">
                 <Button className="bg-[#0937AB] hover:bg-[#0937AB]/90 cursor-pointer rounded">
                   <PlusCircle className="h-4 w-4 mr-2" />
                   Add New Property
