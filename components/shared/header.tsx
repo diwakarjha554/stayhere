@@ -27,7 +27,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-sm">
+    <header className="bg-white sticky top-0 z-50 shadow border-0">
       <div className="mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3">
@@ -42,24 +42,27 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="/"
+              className="text-sm font-semibold hover:text-[#0937AB]"
+            >
               Home
             </Link>
             <Link
               href="/properties"
-              className="text-sm font-medium hover:text-primary"
+              className="text-sm font-semibold hover:text-[#0937AB]"
             >
               Properties
             </Link>
             <Link
               href="/about"
-              className="text-sm font-medium hover:text-primary"
+              className="text-sm font-semibold hover:text-[#0937AB]"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium hover:text-primary"
+              className="text-sm font-semibold hover:text-[#0937AB]"
             >
               Contact
             </Link>
@@ -102,12 +105,21 @@ export function Header() {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded hover:cursor-pointer"
+                  >
                     Log in
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button size="sm">Sign up</Button>
+                  <Button
+                    size="sm"
+                    className="bg-[#0937AB] hover:bg-[#0937AB]/90 cursor-pointer rounded"
+                  >
+                    Sign up
+                  </Button>
                 </Link>
               </>
             )}
